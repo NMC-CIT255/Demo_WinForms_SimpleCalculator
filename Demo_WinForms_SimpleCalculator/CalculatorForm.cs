@@ -29,6 +29,9 @@ namespace Demo_WinForms_SimpleCalculator
             InitializeComponent();
         }
 
+        /// <summary>
+        /// set units labels on form based on radio buttons
+        /// </summary>
         private void radBtn_English_CheckedChanged(object sender, EventArgs e)
         {
             if (radBtn_English.Checked == true)
@@ -39,6 +42,9 @@ namespace Demo_WinForms_SimpleCalculator
             }
         }
 
+        /// <summary>
+        /// set units labels on form based on radio buttons
+        /// </summary>
         private void radBtn_Metric_CheckedChanged(object sender, EventArgs e)
         {
             if (radBtn_Metric.Checked == true)
@@ -49,6 +55,14 @@ namespace Demo_WinForms_SimpleCalculator
             }
         }
 
+        /// <summary>
+        /// validate user input in text boxes, return value or user feedback
+        /// </summary>
+        /// <param name="userInput">text box content</param>
+        /// <param name="maxValue">maximum value</param>
+        /// <param name="value">returned value</param>
+        /// <param name="userFeedback">returned feedback</param>
+        /// <returns></returns>
         private bool ValidateUserInput(string userInput, double maxValue, out double value, out string userFeedback)
         {
             userFeedback = "";
@@ -72,17 +86,23 @@ namespace Demo_WinForms_SimpleCalculator
             }
         }
 
-
+        /// <summary>
+        /// close form button event
+        /// </summary>
         private void btn_Close_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// calculate the number of people who fit
+        /// </summary>
         private void btn_CalculatePeople_Click(object sender, EventArgs e)
         {
-            double length, width, height;
+            double length = 0, width = 0, height = 0;
             double value;
             double maxDimension;
+            int numberOfPeople;
             string validationFeedback;
             string userMessage = null;
 
@@ -128,38 +148,23 @@ namespace Demo_WinForms_SimpleCalculator
 
             if (userMessage != null)
             {
-                MessageBox.Show(userMessage);
                 lbl_ErrorMessage.Text = userMessage;
+                //MessageBox.Show(userMessage);
             }
+
+            numberOfPeople = NumberOfPeople(length, width, height);
         }
 
-        private double ValidateDimension(TextBox textBox)
+        /// <summary>
+        /// calculate the number of people who fit
+        /// </summary>
+        /// <param name="length">length of phone booth</param>
+        /// <param name="width">width of phone booth</param>
+        /// <param name="height">height of phone booth</param>
+        /// <returns></returns>
+        private int NumberOfPeople(double length, double width, double height)
         {
-            double value;
-            double maxDimension;
-            string userFeedback;
-
-            if (radBtn_English.Checked == true)
-            {
-                maxDimension = MAX_DIMENSION_FT;
-            }
-            else
-            {
-                maxDimension = MAX_DIMENSION_M;
-            }
-
-            if (!ValidateUserInput(textBox.Text, maxDimension, out value, out userFeedback))
-            {
-                MessageBox.Show(userFeedback);
-                textBox.Text = null;
-                textBox.Focus();
-            }
-            return value;
-        }
-
-        private double NumberOfPeople(double length, double width, double height)
-        {
-            const double CONV_CFT_CM = 0.0283168;
+            const double CONV_CFT_CM = 0.0283168; // cubic feet to cubic meters
 
             int numberOfPeople = 0;
             double volumeOfPhoneBooth;
@@ -181,9 +186,28 @@ namespace Demo_WinForms_SimpleCalculator
                 case ("Tall and Skinny"):
                     numberOfPeople = (int)Math.Truncate(volumeOfPhoneBooth / VOLUME_T_S);
                     break;
+                case ("Tall and Robust"):
+                    numberOfPeople = (int)Math.Truncate(volumeOfPhoneBooth / VOLUME_T_R);
+                    break;
+                case ("Short and Skinny"):
+                    numberOfPeople = (int)Math.Truncate(volumeOfPhoneBooth / VOLUME_S_S);
+                    break;
+                case ("Short and Robust"):
+                    numberOfPeople = (int)Math.Truncate(volumeOfPhoneBooth / VOLUME_S_R);
+                    break;
             }
 
             return numberOfPeople;
+        }
+
+        /// <summary>
+        /// set up form on load event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CalculatorForm_Load(object sender, EventArgs e)
+        {
+            cmbBox_BodyType.SelectedIndex = 1;
         }
     }
 }

@@ -235,6 +235,7 @@
             this.Controls.Add(this.picBox_TelephoneStuffing);
             this.Controls.Add(this.lbl_FormTitle);
             this.Name = "CalculatorForm";
+            this.Load += new System.EventHandler(this.CalculatorForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picBox_TelephoneStuffing)).EndInit();
             this.grpBox_Units.ResumeLayout(false);
             this.grpBox_Units.PerformLayout();
