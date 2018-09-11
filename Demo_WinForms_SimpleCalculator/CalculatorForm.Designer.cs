@@ -42,6 +42,10 @@
             this.radBtn_English = new System.Windows.Forms.RadioButton();
             this.lbl_BodyType = new System.Windows.Forms.Label();
             this.cmbBox_BodyType = new System.Windows.Forms.ComboBox();
+            this.lbl_ErrorMessage = new System.Windows.Forms.Label();
+            this.btn_CalculatePeople = new System.Windows.Forms.Button();
+            this.btn_Help = new System.Windows.Forms.Button();
+            this.btn_Close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_TelephoneStuffing)).BeginInit();
             this.grpBox_Units.SuspendLayout();
             this.SuspendLayout();
@@ -81,7 +85,6 @@
             this.txtBox_Length.Name = "txtBox_Length";
             this.txtBox_Length.Size = new System.Drawing.Size(100, 22);
             this.txtBox_Length.TabIndex = 0;
-            this.txtBox_Length.Leave += new System.EventHandler(this.txtBox_Leave);
             // 
             // txtBox_Width
             // 
@@ -89,7 +92,6 @@
             this.txtBox_Width.Name = "txtBox_Width";
             this.txtBox_Width.Size = new System.Drawing.Size(100, 22);
             this.txtBox_Width.TabIndex = 1;
-            this.txtBox_Width.Leave += new System.EventHandler(this.txtBox_Leave);
             // 
             // lbl_Width
             // 
@@ -173,11 +175,54 @@
             this.cmbBox_BodyType.Size = new System.Drawing.Size(150, 24);
             this.cmbBox_BodyType.TabIndex = 3;
             // 
+            // lbl_ErrorMessage
+            // 
+            this.lbl_ErrorMessage.AutoSize = true;
+            this.lbl_ErrorMessage.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbl_ErrorMessage.Location = new System.Drawing.Point(509, 101);
+            this.lbl_ErrorMessage.MaximumSize = new System.Drawing.Size(300, 0);
+            this.lbl_ErrorMessage.Name = "lbl_ErrorMessage";
+            this.lbl_ErrorMessage.Size = new System.Drawing.Size(0, 17);
+            this.lbl_ErrorMessage.TabIndex = 10;
+            // 
+            // btn_CalculatePeople
+            // 
+            this.btn_CalculatePeople.Location = new System.Drawing.Point(278, 260);
+            this.btn_CalculatePeople.Name = "btn_CalculatePeople";
+            this.btn_CalculatePeople.Size = new System.Drawing.Size(259, 33);
+            this.btn_CalculatePeople.TabIndex = 11;
+            this.btn_CalculatePeople.Text = "Calculate Maximum People";
+            this.btn_CalculatePeople.UseVisualStyleBackColor = true;
+            this.btn_CalculatePeople.Click += new System.EventHandler(this.btn_CalculatePeople_Click);
+            // 
+            // btn_Help
+            // 
+            this.btn_Help.Location = new System.Drawing.Point(578, 260);
+            this.btn_Help.Name = "btn_Help";
+            this.btn_Help.Size = new System.Drawing.Size(75, 33);
+            this.btn_Help.TabIndex = 12;
+            this.btn_Help.Text = "Help";
+            this.btn_Help.UseVisualStyleBackColor = true;
+            // 
+            // btn_Close
+            // 
+            this.btn_Close.Location = new System.Drawing.Point(675, 260);
+            this.btn_Close.Name = "btn_Close";
+            this.btn_Close.Size = new System.Drawing.Size(75, 33);
+            this.btn_Close.TabIndex = 13;
+            this.btn_Close.Text = "Close";
+            this.btn_Close.UseVisualStyleBackColor = true;
+            this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
+            // 
             // CalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 336);
+            this.ClientSize = new System.Drawing.Size(816, 336);
+            this.Controls.Add(this.btn_Close);
+            this.Controls.Add(this.btn_Help);
+            this.Controls.Add(this.btn_CalculatePeople);
+            this.Controls.Add(this.lbl_ErrorMessage);
             this.Controls.Add(this.cmbBox_BodyType);
             this.Controls.Add(this.lbl_BodyType);
             this.Controls.Add(this.grpBox_Units);
@@ -213,6 +258,10 @@
         private System.Windows.Forms.RadioButton radBtn_English;
         private System.Windows.Forms.Label lbl_BodyType;
         private System.Windows.Forms.ComboBox cmbBox_BodyType;
+        private System.Windows.Forms.Label lbl_ErrorMessage;
+        private System.Windows.Forms.Button btn_CalculatePeople;
+        private System.Windows.Forms.Button btn_Help;
+        private System.Windows.Forms.Button btn_Close;
     }
 }
 
