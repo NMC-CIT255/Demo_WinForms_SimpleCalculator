@@ -209,5 +209,12 @@ namespace Demo_WinForms_SimpleCalculator
         {
             cmbBox_BodyType.SelectedIndex = 1;
         }
+
+        private void btn_Help_Click(object sender, EventArgs e)
+        {
+            HelpForm helpForm = new HelpForm();
+            helpForm.ShowDialog();
+            helpForm.Dispose();
+        }
     }
 }

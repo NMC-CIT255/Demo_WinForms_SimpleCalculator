@@ -30,6 +30,7 @@
         {
             this.lvl_Directions = new System.Windows.Forms.Label();
             this.lbl_Directions = new System.Windows.Forms.Label();
+            this.btn_Close = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvl_Directions
@@ -51,11 +52,22 @@
             this.lbl_Directions.Size = new System.Drawing.Size(0, 17);
             this.lbl_Directions.TabIndex = 1;
             // 
+            // btn_Close
+            // 
+            this.btn_Close.Location = new System.Drawing.Point(18, 183);
+            this.btn_Close.Name = "btn_Close";
+            this.btn_Close.Size = new System.Drawing.Size(75, 33);
+            this.btn_Close.TabIndex = 14;
+            this.btn_Close.Text = "Close";
+            this.btn_Close.UseVisualStyleBackColor = true;
+            this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
+            // 
             // HelpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(386, 332);
+            this.ClientSize = new System.Drawing.Size(527, 228);
+            this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.lbl_Directions);
             this.Controls.Add(this.lvl_Directions);
             this.Name = "HelpForm";
@@ -70,5 +82,6 @@
 
         private System.Windows.Forms.Label lvl_Directions;
         private System.Windows.Forms.Label lbl_Directions;
+        private System.Windows.Forms.Button btn_Close;
     }
 }

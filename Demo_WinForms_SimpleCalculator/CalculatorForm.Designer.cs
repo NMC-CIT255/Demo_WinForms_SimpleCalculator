@@ -203,6 +203,7 @@
             this.btn_Help.TabIndex = 12;
             this.btn_Help.Text = "Help";
             this.btn_Help.UseVisualStyleBackColor = true;
+            this.btn_Help.Click += new System.EventHandler(this.btn_Help_Click);
             // 
             // btn_Close
             // 
