@@ -22,8 +22,6 @@ namespace Demo_WinForms_SimpleCalculator
         const double VOLUME_T_S = .8;
         const double VOLUME_T_R = .9;
 
-
-
         public CalculatorForm()
         {
             InitializeComponent();
@@ -62,7 +60,7 @@ namespace Demo_WinForms_SimpleCalculator
         /// <param name="maxValue">maximum value</param>
         /// <param name="value">returned value</param>
         /// <param name="userFeedback">returned feedback</param>
-        /// <returns></returns>
+        /// <returns>validated input status</returns>
         private bool ValidateUserInput(string userInput, double maxValue, out double value, out string userFeedback)
         {
             userFeedback = "";
@@ -118,6 +116,9 @@ namespace Demo_WinForms_SimpleCalculator
                 maxDimension = MAX_DIMENSION_M;
             }
 
+            //
+            // validate each user input and build out the feedback message
+            //
             if (!ValidateUserInput(txtBox_Length.Text, maxDimension, out value, out validationFeedback))
             {
                 userMessage += "The Length" + validationFeedback + Environment.NewLine;
@@ -148,11 +149,23 @@ namespace Demo_WinForms_SimpleCalculator
 
             if (userMessage != null)
             {
-                lbl_ErrorMessage.Text = userMessage;
-                //MessageBox.Show(userMessage);
+                //lbl_ErrorMessage.Text = userMessage;
+                MessageBox.Show(userMessage);
             }
+            //
+            // open the SolutionForm
+            //
+            else
+            {
+                numberOfPeople = NumberOfPeople(length, width, height);
 
-            numberOfPeople = NumberOfPeople(length, width, height);
+                Form solutionForm = new form_Solution(new SolutionFormInfo(numberOfPeople, cmbBox_BodyType.Text));
+                solutionForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+                solutionForm.MaximizeBox = false;
+                solutionForm.MinimizeBox = false;
+                solutionForm.ShowDialog();
+                solutionForm.Dispose();
+            }
         }
 
         /// <summary>
@@ -161,7 +174,7 @@ namespace Demo_WinForms_SimpleCalculator
         /// <param name="length">length of phone booth</param>
         /// <param name="width">width of phone booth</param>
         /// <param name="height">height of phone booth</param>
-        /// <returns></returns>
+        /// <returns>calculated number of people</returns>
         private int NumberOfPeople(double length, double width, double height)
         {
             const double CONV_CFT_CM = 0.0283168; // cubic feet to cubic meters
@@ -203,16 +216,20 @@ namespace Demo_WinForms_SimpleCalculator
         /// <summary>
         /// set up form on load event
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void CalculatorForm_Load(object sender, EventArgs e)
         {
             cmbBox_BodyType.SelectedIndex = 1;
         }
 
+        /// <summary>
+        /// open help dialog box
+        /// </summary>
         private void btn_Help_Click(object sender, EventArgs e)
         {
             HelpForm helpForm = new HelpForm();
+            helpForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+            helpForm.MinimizeBox = false;
+            helpForm.MaximizeBox = false;
             helpForm.ShowDialog();
             helpForm.Dispose();
         }
